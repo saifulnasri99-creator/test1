@@ -1,0 +1,111 @@
+<!--
+  NOTE: This is a PURE HTML file. Save it as `index.html` and serve it as static HTML.
+  Do NOT place this file into a React/TypeScript entry (e.g. index.tsx), otherwise the
+  TypeScript/JSX parser will throw a SyntaxError like: "Unexpected token (1:0)".
+
+  If you need a React/TSX version instead, tell me and I'll provide a separate `App.tsx`.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Premium Home Tuition</title>
+  <style>
+    :root { --bg:#0b0b0f; --panel:#1a0028; --panel-2:#2b0040; --accent:#d4af37; --border:#5c1a82; --muted:#d9d9e6; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: Arial, sans-serif; background: var(--bg); color: var(--muted); }
+    .hero { text-align: center; padding: 120px 20px; background: linear-gradient(to bottom, #1a0028, #3b0a57); color: white; }
+    .btn { display: inline-block; padding: 12px 28px; background: var(--accent); color: black; border-radius: 12px; text-decoration: none; font-weight: bold; }
+    section { padding: 60px 20px; }
+    h2 { text-align: center; color: var(--accent); margin-bottom: 24px; }
+    .grid { display: grid; gap: 20px; max-width: 900px; margin: auto; }
+    .grid-3 { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+    .card { padding: 25px; background: var(--panel); border: 1px solid var(--border); border-radius: 12px; text-align: center; }
+    .subjects { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+    .subject-box { padding: 20px; background: var(--panel-2); border: 1px solid var(--border); border-radius: 10px; text-align: center; font-weight: bold; color: #e4d6ff; }
+    form { max-width: 500px; margin: auto; padding: 30px; background: var(--panel); border-radius: 12px; border: 1px solid var(--border); }
+    input, textarea { width: 100%; padding: 10px; margin-top: 5px; margin-bottom: 20px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg); color: white; }
+    button { width: 100%; padding: 12px; background: var(--accent); color: black; border-radius: 12px; border: none; font-weight: bold; cursor: pointer; }
+    footer { text-align: center; padding: 20px; color: #777; border-top: 1px solid var(--border); background: var(--bg); margin-top: 40px; }
+    @media (max-width: 600px) {
+      .hero { padding: 80px 12px; }
+      section { padding: 40px 12px; }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="hero">
+    <h1 style="font-size: 48px; font-weight: bold;">Premium Home Tuition</h1>
+    <p style="margin-top: 10px; font-size: 18px;">Personalised one‑to‑one lessons for real academic improvement.</p>
+    <a class="btn" href="#register" style="margin-top: 18px; display:inline-block;">Register Now</a>
+  </section>
+
+  <section>
+    <h2>Why Choose Us?</h2>
+    <div class="grid grid-3">
+      <div class="card"><h3>Experienced Tutors</h3><p>Qualified tutors with excellent track records.</p></div>
+      <div class="card"><h3>Flexible Scheduling</h3><p>Choose time slots that suit your schedule.</p></div>
+      <div class="card"><h3>Personalised Learning</h3><p>Tailored lessons for every student.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Subjects Offered</h2>
+    <div class="grid subjects">
+      <div class="subject-box">Mathematics</div>
+      <div class="subject-box">Science</div>
+      <div class="subject-box">English</div>
+      <div class="subject-box">Bahasa Melayu</div>
+      <div class="subject-box">Physics</div>
+      <div class="subject-box">Chemistry</div>
+      <div class="subject-box">Biology</div>
+      <div class="subject-box">Add Maths</div>
+    </div>
+  </section>
+
+  <section id="register">
+    <h2>Register a Student</h2>
+    <form id="regForm">
+      <label>Student Name</label>
+      <input id="studentName" type="text" placeholder="Enter student name" required />
+
+      <label>Phone Number</label>
+      <input id="phone" type="tel" placeholder="012-3456789" required />
+
+      <label>Subjects Interested</label>
+      <input id="subjects" type="text" placeholder="e.g. Maths, Science" />
+
+      <label>Additional Notes</label>
+      <textarea id="notes" rows="4" placeholder="Any important info"></textarea>
+
+      <button type="submit">Submit Registration</button>
+    </form>
+
+    <div id="successMsg" style="max-width:500px;margin:20px auto;display:none;padding:16px;background:#122; border:1px solid #5c1a82;border-radius:8px;color:#d9ffd6;">Registration received — we will contact you shortly.</div>
+  </section>
+
+  <footer>
+    © 2025 Home Tuition Service — Premium Edition
+  </footer>
+
+  <script>
+    // Simple client-side form handler (demo). Replace with backend integration when ready.
+    document.getElementById('regForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const name = document.getElementById('studentName').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      if (!name || !phone) { alert('Please fill required fields.'); return; }
+
+      // Here you could call your backend (Supabase / EmailJS / fetch)
+      console.log('Registration:', { name, phone, subjects: document.getElementById('subjects').value, notes: document.getElementById('notes').value });
+
+      document.getElementById('regForm').reset();
+      document.getElementById('successMsg').style.display = 'block';
+    });
+  </script>
+
+</body>
+</html>
